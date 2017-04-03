@@ -5,6 +5,14 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+
+    var wilddog = require('wilddog-weapp-all')
+    var config = {
+        syncURL: 'https://to-do.wilddogio.com',
+        authDomain: 'to-do.wilddog.com'
+    }
+    wilddog.initializeApp(config)
+    this.teamItems = wilddog.sync().ref('teamItems')
   },
   getUserInfo:function(cb){
     var that = this
